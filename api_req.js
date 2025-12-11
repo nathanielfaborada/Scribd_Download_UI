@@ -19,14 +19,15 @@ async function searchScribdLink() {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
 
-        // Create download link (for backup display)
+        // Create status text (NOT clickable)
         const a = document.createElement("a");
         a.href = url;
         a.download = "scribd_document.pdf";
         a.textContent = "✅ PDF will download automatically...";
-        a.className = "text-blue-600 underline font-semibold text-lg";
-        resultDiv.innerHTML = "";
-        resultDiv.appendChild(a);
+        a.className = "text-green-400 font-semibold text-lg";
+        a.style.pointerEvents = "none"; // disable clicking
+        a.style.textDecoration = "none"; // remove underline
+        a.style.color = "#22c55e"; // force green color
 
         // ⭐ AUTO-DOWNLOAD
         setTimeout(() => {
